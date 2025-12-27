@@ -80,14 +80,13 @@ Output XML will have enriched tokens:
 
 ## Examples
 
-### Example 1: Process default files
+### Examples
 ```bash
 python3 scripts/add_lemmas.py
-```
 
-### Example 2: Process specific files
-```bash
 python3 scripts/add_lemmas.py --sheet "Revised" data/custom.tagged.xlsx input.xml output.xml
+
+python3 ./scripts/add_lemmas.py ./data/HdE_DCE.tagged.xlsx ./data/HdE_DCE.xml output/HdE_DCE.enriched.xml
 ```
 
 ## Output
