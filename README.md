@@ -1,4 +1,4 @@
-# Provide lemma and part-of-speech annotations to TEI files 
+# Enrich TEI files with lemma and part-of-speech annotations  
 
 Python script to enrich TEI XML files with linguistic annotations (lemma and POS tags) from Excel spreadsheets.
 
