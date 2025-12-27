@@ -39,7 +39,7 @@ python3 scripts/add_lemmas.py <tagged_file.xlsx> <input.xml> <output.xml>
 ### Custom sheet name
 
 ```bash
-python3 scripts/add_lemmas.py --sheet "Revised2" <tagged_file.xlsx> <input.xml> <output.xml>
+python3 scripts/add_lemmas.py --sheet "Data" <tagged_file.xlsx> <input.xml> <output.xml>
 ```
 
 ## Excel Format
