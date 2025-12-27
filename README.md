@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Provide lemma and part-of-speech annotations to TEI files 
 
 Python script to enrich TEI XML files with linguistic annotations (lemma and POS tags) from Excel spreadsheets.
@@ -102,6 +101,3 @@ Updated 154952 tokens; wrote data/HdE_A.with_lemmas.xml
 ## License
 
 This project is part of the CTA-corpus initiative.
-=======
-# add-pos-annotations
->>>>>>> parent of ed18931 (Add script to enrich TEI XML with lemma and POS tag annotations from Excel)
