@@ -1,4 +1,5 @@
-# add-pos-annotations
+<<<<<<< HEAD
+# Provide lemma and part-of-speech annotations to TEI files 
 
 Python script to enrich TEI XML files with linguistic annotations (lemma and POS tags) from Excel spreadsheets.
 
@@ -26,7 +27,7 @@ python3 scripts/add_lemmas.py
 
 This uses the default files:
 - Tagged file: `data/HdE_A.tagged.xlsx`
-- Input XML: `HdE_A.xml`
+- Input XML: `data/HdE_A.xml`
 - Output XML: `HdE_A.with_lemmas.xml`
 - Sheet name: `Revised`
 
@@ -39,7 +40,7 @@ python3 scripts/add_lemmas.py <tagged_file.xlsx> <input.xml> <output.xml>
 ### Custom sheet name
 
 ```bash
-python3 scripts/add_lemmas.py --sheet "MySheet" <tagged_file.xlsx> <input.xml> <output.xml>
+python3 scripts/add_lemmas.py --sheet "Revised2" <tagged_file.xlsx> <input.xml> <output.xml>
 ```
 
 ## Excel Format
@@ -87,12 +88,7 @@ python3 scripts/add_lemmas.py
 
 ### Example 2: Process specific files
 ```bash
-python3 scripts/add_lemmas.py data/custom.tagged.xlsx input.xml output.xml
-```
-
-### Example 3: Use different sheet
-```bash
-python3 scripts/add_lemmas.py --sheet "Data" data/file.xlsx in.xml out.xml
+python3 scripts/add_lemmas.py --sheet "Revised" data/custom.tagged.xlsx input.xml output.xml
 ```
 
 ## Output
@@ -100,9 +96,12 @@ python3 scripts/add_lemmas.py --sheet "Data" data/file.xlsx in.xml out.xml
 The script prints progress information:
 ```
 Loaded 154952 token annotations from data/HdE_A.tagged.xlsx#Revised
-Updated 154952 tokens; wrote HdE_A.with_lemmas.xml
+Updated 154952 tokens; wrote data/HdE_A.with_lemmas.xml
 ```
 
 ## License
 
 This project is part of the CTA-corpus initiative.
+=======
+# add-pos-annotations
+>>>>>>> parent of ed18931 (Add script to enrich TEI XML with lemma and POS tag annotations from Excel)

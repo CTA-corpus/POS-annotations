@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 import sys
-import argparse
 import openpyxl
 import xml.etree.ElementTree as ET
+
+WB_PATH = 'data/HdE_A.tagged.xlsx'
+SHEET_NAME = 'Revised'
+XML_IN = 'HdE_A.xml'
+XML_OUT = 'HdE_A.with_lemmas.xml'
 
 def load_token_annotations(path, sheet_name):
     wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
@@ -47,17 +51,10 @@ def enrich_xml_with_annotations(xml_in, xml_out, mapping):
     return updated
 
 def main():
-    parser = argparse.ArgumentParser(description='Add lemma and tag annotations from Excel to XML tokens')
-    parser.add_argument('tagged_file', nargs='?', default='data/HdE_A.tagged.xlsx', help='Path to the tagged Excel file (.xlsx) (default: data/HdE_A.tagged.xlsx)')
-    parser.add_argument('input_xml', nargs='?', default='HdE_A.xml', help='Path to the input XML file (default: HdE_A.xml)')
-    parser.add_argument('output_xml', nargs='?', default='HdE_A.with_lemmas.xml', help='Path to the output XML file (default: HdE_A.with_lemmas.xml)')
-    parser.add_argument('--sheet', default='Revised', help='Sheet name in Excel file (default: Revised)')
-    args = parser.parse_args()
-    
-    mapping = load_token_annotations(args.tagged_file, args.sheet)
-    print(f'Loaded {len(mapping)} token annotations from {args.tagged_file}#{args.sheet}')
-    updated = enrich_xml_with_annotations(args.input_xml, args.output_xml, mapping)
-    print(f'Updated {updated} tokens; wrote {args.output_xml}')
+    mapping = load_token_annotations(WB_PATH, SHEET_NAME)
+    print(f'Loaded {len(mapping)} token annotations from {WB_PATH}#{SHEET_NAME}')
+    updated = enrich_xml_with_annotations(XML_IN, XML_OUT, mapping)
+    print(f'Updated {updated} tokens; wrote {XML_OUT}')
 
 if __name__ == '__main__':
     main()
