@@ -1,4 +1,4 @@
-# Enrich TEI files with lemma and part-of-speech annotations  
+# Enrich TEI files with lemma and POS tags  
 
 Python script to enrich TEI XML files with linguistic annotations (lemma and POS tags) from Excel spreadsheets.
 
@@ -80,13 +80,19 @@ Output XML will have enriched tokens:
 
 ## Examples
 
-### Examples
 ```bash
 python3 scripts/add_lemmas.py
 
 python3 scripts/add_lemmas.py --sheet "Revised" data/custom.tagged.xlsx input.xml output.xml
 
 python3 ./scripts/add_lemmas.py ./data/HdE_DCE.tagged.xlsx ./data/HdE_DCE.xml output/HdE_DCE.enriched.xml
+```
+
+```bash
+for i in LdM MISJ quicquevult Vespasiano VMSSB_E VMSSB_G1 VSME-V VSME-W; do
+echo $i
+python3 ./scripts/add_lemmas.py data/$i.tagged.xlsx data/$i.xml ./output/$i.enriched.xml
+done
 ```
 
 ## Output
