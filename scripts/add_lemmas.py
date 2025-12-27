@@ -1,0 +1,60 @@
+#!/usr/bin/env python3
+import sys
+import openpyxl
+import xml.etree.ElementTree as ET
+
+WB_PATH = 'data/HdE_A.tagged.xlsx'
+SHEET_NAME = 'Revised'
+XML_IN = 'HdE_A.xml'
+XML_OUT = 'HdE_A.with_lemmas.xml'
+
+def load_token_annotations(path, sheet_name):
+    wb = openpyxl.load_workbook(path, read_only=True, data_only=True)
+    if sheet_name not in wb.sheetnames:
+        raise SystemExit(f"Sheet '{sheet_name}' not found in {path}")
+    ws = wb[sheet_name]
+    rows = list(ws.iter_rows(values_only=True))
+    if not rows:
+        return {}
+    header = [ (c or '').strip().lower() for c in rows[0] ]
+    try:
+        id_idx = header.index('id')
+        lemma_idx = header.index('lemma')
+        tag_idx = header.index('tag')
+    except ValueError as e:
+        raise SystemExit(f"Required columns 'id', 'lemma', and 'tag' not found in header: {e}")
+    mapping = {}
+    for row in rows[1:]:
+        if not row:
+            continue
+        tokid = row[id_idx]
+        lemma = row[lemma_idx]
+        tag = row[tag_idx]
+        if tokid:
+            mapping[str(tokid)] = {'lemma': str(lemma) if lemma else None, 'tag': str(tag) if tag else None}
+    return mapping
+
+def enrich_xml_with_annotations(xml_in, xml_out, mapping):
+    tree = ET.parse(xml_in)
+    root = tree.getroot()
+    updated = 0
+    for tok in root.iter('tok'):
+        tid = tok.get('id')
+        if tid and tid in mapping:
+            data = mapping[tid]
+            if data.get('lemma'):
+                tok.set('lemma', data['lemma'])
+            if data.get('tag'):
+                tok.set('tag', data['tag'])
+            updated += 1
+    tree.write(xml_out, encoding='utf-8', xml_declaration=True)
+    return updated
+
+def main():
+    mapping = load_token_annotations(WB_PATH, SHEET_NAME)
+    print(f'Loaded {len(mapping)} token annotations from {WB_PATH}#{SHEET_NAME}')
+    updated = enrich_xml_with_annotations(XML_IN, XML_OUT, mapping)
+    print(f'Updated {updated} tokens; wrote {XML_OUT}')
+
+if __name__ == '__main__':
+    main()
