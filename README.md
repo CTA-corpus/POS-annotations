@@ -4,7 +4,7 @@ Python script to enrich TEI XML files with linguistic annotations (lemma and POS
 
 ## Overview
 
-This tool reads token annotations from an Excel file and adds them as attributes to `<tok>` elements in TEI XML documents. It matches tokens by their `id` attribute and enriches them with `lemma` and `tag` (POS) information.
+This tool reads token annotations from an Excel file and adds them as attributes to `<tok>` elements in TEI XML documents. It matches tokens by their `id` attribute and enriches them with `lemma` and `mfs` (morpho-functional specification) information.
 
 ## Requirements
 
@@ -73,18 +73,22 @@ Input XML should contain `<tok>` elements with `id` attributes:
 Output XML will have enriched tokens:
 
 ```xml
-<tok id="w-1" lemma="aqui" tag="ADV">Aquj</tok>
-<tok id="w-2" lemma="eu" tag="PRO+pes:R3s">se</tok>
-<tok id="w-3" lemma="começar" tag="V:P3s">começa</tok>
+<tok id="w-1" lemma="aqui" mfs="ADV">Aquj</tok>
+<tok id="w-2" lemma="eu" mfs="PRO+pes:R3s">se</tok>
+<tok id="w-3" lemma="começar" mfs="V:P3s">começa</tok>
 ```
 
 ## Examples
 
 ```bash
 python3 scripts/add_lemmas.py
+```
 
+```bash
 python3 scripts/add_lemmas.py --sheet "Revised" data/custom.tagged.xlsx input.xml output.xml
+```
 
+```bash
 python3 ./scripts/add_lemmas.py ./data/HdE_DCE.tagged.xlsx ./data/HdE_DCE.xml output/HdE_DCE.enriched.xml
 ```
 

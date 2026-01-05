@@ -41,16 +41,16 @@ def enrich_xml_with_annotations(xml_in, xml_out, mapping):
             if data.get('lemma'):
                 tok.set('lemma', data['lemma'])
             if data.get('tag'):
-                tok.set('tag', data['tag'])
+                tok.set('mfs', data['tag'])
             updated += 1
     tree.write(xml_out, encoding='utf-8', xml_declaration=True)
     return updated
 
 def main():
     parser = argparse.ArgumentParser(description='Add lemma and tag annotations from Excel to XML tokens')
-    parser.add_argument('tagged_file', nargs='?', default='data/HdE_A.tagged.xlsx', help='Path to the tagged Excel file (.xlsx) (default: data/HdE_A.tagged.xlsx)')
-    parser.add_argument('input_xml', nargs='?', default='data/HdE_A.xml', help='Path to the input XML file (default: HdE_A.xml)')
-    parser.add_argument('output_xml', nargs='?', default='HdE_A.enriched.xml', help='Path to the output XML file (default: HdE_A.enriched.xml)')
+    parser.add_argument('tagged_file', nargs='?', default='data/HdE_DCE.tagged.xlsx', help='Path to the tagged Excel file (.xlsx) (default: data/HdE_DCE.tagged.xlsx)')
+    parser.add_argument('input_xml', nargs='?', default='data/HdE_DCE.xml', help='Path to the input XML file (default: HdE_DCE.xml)')
+    parser.add_argument('output_xml', nargs='?', default='HdE_DCE.enriched.xml', help='Path to the output XML file (default: HdE_DCE.enriched.xml)')
     parser.add_argument('--sheet', default='Revised', help='Sheet name in Excel file (default: Revised)')
     args = parser.parse_args()
     
