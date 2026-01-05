@@ -93,7 +93,7 @@ python3 ./scripts/add_lemmas.py ./data/HdE_DCE.tagged.xlsx ./data/HdE_DCE.xml ou
 ```
 
 ```bash
-for i in LdM MISJ quicquevult Vespasiano VMSSB_E VMSSB_G1 VSME-V VSME-W; do
+for i in HdE_DCE HdE_A LdM MISJ QV Tarsis Vespasiano VMSSB_E VMSSB_G1 VMSSB-G2 VMSSB-P VSME-V VSME-W; do
 echo $i
 python3 ./scripts/add_lemmas.py data/$i.tagged.xlsx data/$i.xml ./output/$i.enriched.xml
 done
